@@ -1,7 +1,9 @@
-import {allBlogPostfetch} from "../api_calls/api_fetch.js";
+const token = localStorage.getItem("token");
+
+import { allBlogPostfetch } from "../api_calls/api_fetch.js";
+
 async function displayBlogPosts() {
     try {
-        // Kall på API-funksjonen for å hente data
         const posts = await allBlogPostfetch();
         
         const blogContainer = document.getElementById("data-container");
@@ -11,13 +13,14 @@ async function displayBlogPosts() {
             const postElement = document.createElement("div");
             postElement.classList.add("post");
 
-            
+            const firstSentence = post.body.split(".")[0] + ".";
+
             postElement.innerHTML = `
+                <img src="${post.media.url}" alt="${post.media.alt}">
                 <h2>${post.title}</h2>
-                <p>${post.body}</p>
+                <p>${firstSentence}</p>
             `;
 
-            
             blogContainer.appendChild(postElement);
         });
     } catch (error) {

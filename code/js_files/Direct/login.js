@@ -1,3 +1,5 @@
+
+
 async function handelLogin(event) {
     event.preventDefault(); 
 
@@ -24,6 +26,7 @@ async function handelLogin(event) {
         localStorage.setItem("token", token);
         localStorage.setItem("userEmail", userEmail);
         window.location.href = "edit.html";
+        console.log(data);
     } catch (error) {
         console.error("Wrong password or email", error);
     }
